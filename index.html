@@ -189,6 +189,74 @@ input[type=file]{display:none}
 .miss-banner{background:rgba(155,89,182,.12);border:1px solid rgba(155,89,182,.3);border-radius:var(--r);padding:10px 14px;font-size:12px;color:#9b59b6;display:flex;align-items:center;gap:8px;margin-bottom:12px}
 .dl-filter{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
 @media(max-width:600px){#main{padding:12px}.krow{grid-template-columns:repeat(2,1fr)}.dmeta{grid-template-columns:repeat(2,1fr)}.ufrow{grid-template-columns:1fr 1fr}.ufrow .btn-sv{grid-column:1/-1;width:100%}.lg3{grid-template-columns:1fr 1fr}.logitem{grid-template-columns:68px 1fr auto;gap:7px}.calrow{grid-template-columns:1fr 1fr;gap:6px}.mg2{grid-template-columns:1fr}.dl-grid{grid-template-columns:1fr 1fr}}
+
+/* ════════════════ SLEEK POLISH LAYER ════════════════
+   Same palette & fonts — adds depth, motion, refinement.
+   Self-contained; remove this block to fully revert.
+   ════════════════════════════════════════════════════ */
+:root{--rxl:18px;--ease:cubic-bezier(.4,0,.2,1);--sh1:0 1px 3px rgba(0,0,0,.28);--sh2:0 6px 20px rgba(0,0,0,.3);--sh3:0 18px 44px rgba(0,0,0,.5);--gred:linear-gradient(135deg,#E13434 0%,#C32323 100%)}
+body{background:radial-gradient(125% 120% at 50% -10%,#343434 0%,#2C2C2C 46%,#252525 100%);background-attachment:fixed;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;text-rendering:optimizeLegibility;letter-spacing:.1px}
+
+/* Topbar — subtle metallic gradient + lift */
+#topbar{background:linear-gradient(180deg,#BCBCBC 0%,#A9A9A9 100%);border-bottom:1px solid #8C8C8C;box-shadow:0 2px 14px rgba(0,0,0,.32);padding:0 18px}
+
+/* Frosted sticky nav under the topbar */
+#nav{position:sticky;top:60px;z-index:190;background:rgba(54,54,54,.9);-webkit-backdrop-filter:saturate(150%) blur(12px);backdrop-filter:saturate(150%) blur(12px);box-shadow:0 6px 18px rgba(0,0,0,.18)}
+.nb{transition:color .18s var(--ease),border-color .18s var(--ease)}
+.nb:hover:not(.active){color:var(--wh)}
+.nb.active{text-shadow:0 0 14px rgba(212,43,43,.45)}
+
+/* KPI cards — gentle gradient + hover lift */
+.kpi{background:linear-gradient(180deg,#3D3D3D 0%,#343434 100%);box-shadow:var(--sh1);transition:transform .2s var(--ease),box-shadow .2s var(--ease)}
+.kpi:hover{transform:translateY(-2px);box-shadow:var(--sh2)}
+.kpi::before{height:3px;filter:saturate(1.1)}
+
+/* Surfaces get a soft floor shadow; interactive cards lift */
+.eqcard,.dl-card,.logitem,.calrow,.logfrm,.upfrm,.calwrap,.pdfsec,.aiwrap{box-shadow:var(--sh1)}
+.eqcard,.dl-card{transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s var(--ease)}
+.eqcard:hover,.dl-card:hover{transform:translateY(-1px);border-color:var(--bd2);box-shadow:var(--sh2)}
+.eqcard.open{box-shadow:0 0 0 1px rgba(212,43,43,.3),var(--sh2);transform:none}
+.eqico{background:var(--gred);border-radius:10px;box-shadow:0 3px 10px rgba(212,43,43,.4)}
+
+/* Chips — tighter tracking */
+.schip,.dl-status,.ltag,.dbadge{letter-spacing:.4px}
+
+/* Inputs — smooth focus glow */
+.ff input,.ff select,.ff textarea,.airow input,.eqsel,.caladj-in,.calnav button{transition:border-color .16s var(--ease),box-shadow .16s var(--ease),background .16s var(--ease)}
+.ff input:focus,.ff select:focus,.ff textarea:focus,.airow input:focus,.eqsel:focus,.caladj-in:focus{box-shadow:0 0 0 3px rgba(212,43,43,.16)}
+
+/* Primary red buttons — gradient fill, hover brighten, press */
+.btn-sv,.btn-yes,.btn-pdf,.btn-neweq,.btn-snd{background:var(--gred);box-shadow:0 2px 10px rgba(212,43,43,.3);transition:filter .15s var(--ease),box-shadow .15s var(--ease),transform .1s var(--ease)}
+.btn-purp{background:linear-gradient(135deg,#9b59b6 0%,#7d3f97 100%);box-shadow:0 2px 10px rgba(155,89,182,.3)}
+.btn-sv:hover,.btn-yes:hover,.btn-pdf:hover,.btn-neweq:hover,.btn-snd:hover,.btn-purp:hover{filter:brightness(1.08)}
+.btn-sv:active,.btn-yes:active,.btn-pdf:active,.btn-neweq:active,.btn-snd:active,.btn-purp:active{transform:translateY(1px)}
+
+/* Outline / pill controls — hover + press feedback */
+.btn-ol,.cfbtn,.pill,.btn-csv,.btn-no,.btn-ph,.btn-add{transition:all .16s var(--ease)}
+.btn-ol:hover,.btn-csv:hover,.btn-add:hover{border-color:var(--bd2);filter:brightness(1.08)}
+.cfbtn:hover:not(.on),.pill:hover{border-color:var(--bd2);color:var(--wh);background:var(--bk4)}
+.btn-ol:active,.cfbtn:active,.pill:active,.btn-no:active,.btn-add:active{transform:translateY(1px)}
+
+/* Modal — frosted overlay + entrance animation */
+.overlay{background:rgba(10,10,10,.66);-webkit-backdrop-filter:blur(5px);backdrop-filter:blur(5px);animation:ovin .2s var(--ease)}
+.modal{box-shadow:var(--sh3);border-radius:var(--rxl);animation:moin .26s var(--ease)}
+@keyframes ovin{from{opacity:0}to{opacity:1}}
+@keyframes moin{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* AI chat bubbles */
+.amsg.u .abub{box-shadow:0 2px 10px rgba(212,43,43,.28)}
+.amsg.b .abub{box-shadow:var(--sh1)}
+
+/* Toast — frosted */
+#toast{box-shadow:var(--sh2);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);background:rgba(68,68,68,.92)}
+
+/* Slim custom scrollbars */
+*::-webkit-scrollbar{width:9px;height:9px}
+*::-webkit-scrollbar-thumb{background:rgba(255,255,255,.14);border-radius:6px;border:2px solid transparent;background-clip:padding-box}
+*::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,.24);background-clip:padding-box}
+*::-webkit-scrollbar-track{background:transparent}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
