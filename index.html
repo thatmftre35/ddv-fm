@@ -296,23 +296,8 @@ var LOGO_WEB="iVBORw0KGgoAAAANSUhEUgAAAUAAAAD0CAYAAADqvP99AACeYUlEQVR42uxdd5gV1f
 /* ═══════════════════════════════════════
    FLEET DATA
 ═══════════════════════════════════════ */
-var FLEET=[
-  {id:"EQ-001",sn:"CAT336-SN-0081442",make:"Caterpillar",model:"336 Excavator",type:"Excavator",size:"36-ton",year:"2019",hrs:4820,s500:4600,s1k:4000,s2k:4000,s5k:4000,job:"Site A - Grading",loc:"Main Campus",op:"J. Rivera",fuel:"3/4",insp:"Passed",adh:8},
-  {id:"EQ-002",sn:"JD310L-SN-1T0310L",make:"John Deere",model:"310L Backhoe",type:"Backhoe",size:"97hp",year:"2020",hrs:2375,s500:2250,s1k:2000,s2k:2000,s5k:0,job:"Site B - Trenching",loc:"Block 3",op:"M. Chen",fuel:"1/2",insp:"Passed",adh:7},
-  {id:"EQ-003",sn:"KOM360-SN-A92813",make:"Komatsu",model:"PC360 Excavator",type:"Excavator",size:"36-ton",year:"2018",hrs:1890,s500:1750,s1k:1500,s2k:1000,s5k:0,job:"Site A - Excavation",loc:"Main Campus",op:"T. Adams",fuel:"Full",insp:"Passed",adh:8},
-  {id:"EQ-004",sn:"VOL220-SN-VCE220E",make:"Volvo",model:"EC220 Excavator",type:"Excavator",size:"22-ton",year:"2021",hrs:980,s500:750,s1k:500,s2k:0,s5k:0,job:"Yard",loc:"Equipment Lot",op:"--",fuel:"1/4",insp:"Pending",adh:6},
-  {id:"EQ-005",sn:"CASE580N-SN-N7F018",make:"Case",model:"580N Backhoe",type:"Backhoe",size:"97hp",year:"2019",hrs:3450,s500:3400,s1k:3000,s2k:2000,s5k:0,job:"Site C - Utility",loc:"West End",op:"D. Park",fuel:"1/2",insp:"Passed",adh:7},
-  {id:"EQ-006",sn:"CATD6T-SN-RJG04418",make:"Caterpillar",model:"D6T Dozer",type:"Dozer",size:"175hp",year:"2017",hrs:6210,s500:6000,s1k:6000,s2k:6000,s5k:5000,job:"Site D - Clearing",loc:"North Lot",op:"S. Johnson",fuel:"Full",insp:"Passed",adh:9},
-  {id:"EQ-007",sn:"JD644K-SN-654K662",make:"John Deere",model:"644K Loader",type:"Loader",size:"4.4 yd",year:"2020",hrs:1120,s500:1000,s1k:1000,s2k:0,s5k:0,job:"Site B - Stockpile",loc:"Block 3",op:"K. Lee",fuel:"3/4",insp:"Passed",adh:6},
-  {id:"EQ-008",sn:"BOB770-SN-B38HU99",make:"Bobcat",model:"S770 Skid Steer",type:"Skid Steer",size:"74hp",year:"2022",hrs:560,s500:500,s1k:0,s2k:0,s5k:0,job:"Site A - Cleanup",loc:"Main Campus",op:"A. Torres",fuel:"1/2",insp:"Passed",adh:5},
-  {id:"EQ-009",sn:"CAT308-SN-GRB00421",make:"Caterpillar",model:"308 Mini Excavator",type:"Mini Excavator",size:"8-ton",year:"2023",hrs:312,s500:250,s1k:0,s2k:0,s5k:0,job:"Site E - Landscape",loc:"South Lot",op:"--",fuel:"3/4",insp:"Passed",adh:5},
-  {id:"EQ-010",sn:"TAK12-SN-TL120881",make:"Takeuchi",model:"TL12 Track Loader",type:"Track Loader",size:"68hp",year:"2021",hrs:745,s500:500,s1k:500,s2k:0,s5k:0,job:"Yard",loc:"Equipment Lot",op:"--",fuel:"Full",insp:"Pending",adh:6}
-];
-var LOG=[
-  {date:"06/01/2026",id:"EQ-001",unit:"Caterpillar 336 Excavator",hrs:4600,type:"500-HR",work:"Engine oil & filter, grease all pins/bushings, air filter cleaned",by:"J. Rivera",reqBy:"",reqDate:"",parts:85,labor:120,isReq:false,photos:[]},
-  {date:"05/15/2026",id:"EQ-006",unit:"Caterpillar D6T Dozer",hrs:6000,type:"500/1000/2000-HR",work:"Full major service - oil, filters, hydraulic fluid flush, track tension adj",by:"S. Johnson",reqBy:"",reqDate:"",parts:310,labor:330,isReq:false,photos:[]},
-  {date:"05/10/2026",id:"EQ-003",unit:"Komatsu PC360 Excavator",hrs:1750,type:"500-HR",work:"Oil & filter, grease all pivot points, bucket teeth inspected",by:"T. Adams",reqBy:"",reqDate:"",parts:62,labor:90,isReq:false,photos:[]}
-];
+var FLEET=[];
+var LOG=[];
 
 /* Daily operator logs: DAILY[eqId] = array of entries */
 var DAILY = {};
