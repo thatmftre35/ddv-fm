@@ -290,7 +290,6 @@ body,input,select,textarea,button{font-family:'Inter',system-ui,sans-serif;lette
   <button class="nb" onclick="ST('log')" id="tab-log"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2"/></svg>Log</button>
   <button class="nb" onclick="ST('cal')" id="tab-cal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Cal</button>
   <button class="nb" onclick="ST('rpt')" id="tab-rpt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Reports</button>
-  <button class="nb" onclick="ST('ai')" id="tab-ai"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7H3a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/><path d="M3 14v3a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-3"/><circle cx="8" cy="17" r="1" fill="currentColor"/><circle cx="16" cy="17" r="1" fill="currentColor"/></svg>AI</button>
 </div>
 <div id="main"></div>
 <div id="mod"></div>
@@ -435,7 +434,7 @@ function getChk(type) {
 }
 
 var EQT=["Excavator","Mini Excavator","Backhoe","Dozer","Loader","Track Loader","Skid Steer","Grader","Compactor","Crane","Other"];
-var APP={tab:"dash",open:null,calOff:0,calFlt:"all",ai:[],ph:[],svcI:null,dlFlt:"all",dlOpen:null};
+var APP={tab:"dash",open:null,calOff:0,calFlt:"all",ph:[],svcI:null,dlFlt:"all",dlOpen:null};
 
 /* ─── UTILITIES ─── */
 function gs(h,l,i){if(!l)return"ok";var n=l+i;if(h>=n)return"ov";if(n-h<=50)return"sn";return"ok";}
@@ -516,7 +515,6 @@ function render(){
   else if(APP.tab==="log")rLog(m);
   else if(APP.tab==="cal")rCal(m);
   else if(APP.tab==="rpt")rRpt(m);
-  else if(APP.tab==="ai")rAI(m);
 }
 function updateBadge() {
   var miss = countMissingToday();
@@ -1291,48 +1289,6 @@ function buildUnit(eqId,ih,ir,idl){
   if(ih&&lg.length){h+="<div class='sec'>Service History</div><table><thead><tr><th>Date</th><th>Type</th><th>Work</th><th>By</th><th>Cost</th></tr></thead><tbody>";lg.forEach(function(l){h+="<tr><td>"+l.date+"</td><td>"+l.type+"</td><td>"+l.work+"</td><td>"+l.by+"</td><td>$"+(l.parts+l.labor).toFixed(2)+"</td></tr>";});h+="</tbody></table>";h+="<p style='text-align:right;margin-top:6px;font-weight:600'>Unit Total: $"+uc.toLocaleString(undefined,{minimumFractionDigits:2})+"</p>";}
   if(idl){var dl=DAILY[eqId]||[];if(dl.length){h+="<div class='sec'>Daily Operator Log (Last 30)</div><table><thead><tr><th>Date</th><th>Time</th><th>Operator</th><th>Hours</th><th>Fuel</th><th>Result</th><th>Issues</th></tr></thead><tbody>";dl.slice(0,30).forEach(function(e){h+="<tr"+(e.result==="Failed"?" class='rr'":"")+"'><td>"+e.date+"</td><td>"+(e.ts||"")+"</td><td>"+e.op+"</td><td>"+e.hrs.toLocaleString()+"</td><td>"+e.fuel+"</td><td style='font-weight:700;color:"+(e.result==="Failed"?"#D42B2B":"#1a8a4e")+"'>"+e.result+"</td><td>"+(e.failItems&&e.failItems.length?e.failItems.join(", "):"--")+"</td></tr>";});h+="</tbody></table>";}}
   h+="<div class='ft'><span>BAI Excavating, LLC</span><span>"+eqId+" - "+eq.make+" "+eq.model+"</span></div>";return h;
-}
-
-/* ─── AI ─── */
-function rAI(m){
-  var wrap=mk("div",{cls:"aiwrap"});
-  var top=mk("div",{cls:"aitop"});top.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;color:var(--red)"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7H3a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2z"/><path d="M3 14v3a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-3"/><circle cx="8" cy="17" r="1" fill="currentColor"/><circle cx="16" cy="17" r="1" fill="currentColor"/></svg>';
-  top.appendChild(mk("div",{cls:"ailbl"},"BAI AI Assistant"));top.appendChild(mk("div",{cls:"aipow"},"Powered by Claude"));wrap.appendChild(top);
-  var msgs=mk("div",{cls:"aimsgs",id:"aim"});
-  if(APP.ai.length===0){var init=mk("div",{cls:"amsg b"});init.appendChild(mk("div",{cls:"abub"},"Ask me anything about your fleet — service schedules, overdue units, daily compliance, or what needs attention today."));msgs.appendChild(init);}
-  else{APP.ai.forEach(function(m2){var d=mk("div",{cls:"amsg "+(m2.r==="u"?"u":"b")});d.appendChild(mk("div",{cls:"abub"},m2.c));msgs.appendChild(d);});}
-  wrap.appendChild(msgs);
-  var bot=mk("div",{cls:"aibot"});var row=mk("div",{cls:"airow"});
-  var inp=mk("input",{type:"text",id:"ain",placeholder:"Ask about your fleet..."});inp.addEventListener("keydown",function(e){if(e.key==="Enter")sAI();});
-  var bsnd=mk("button",{cls:"btn-snd",id:"asb"});bsnd.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>';bsnd.addEventListener("click",sAI);
-  ap(row,inp,bsnd);bot.appendChild(row);
-  var pills=mk("div",{cls:"pills"});
-  ["What's overdue?","Missing reports today","Fleet health","Due this week","Units with issues","Cost summary"].forEach(function(q){
-    var p=mk("div",{cls:"pill"},q);p.addEventListener("click",function(){el("ain").value=q;sAI();});pills.appendChild(p);
-  });
-  bot.appendChild(pills);wrap.appendChild(bot);m.appendChild(wrap);
-}
-function aiCtx(){
-  var miss=FLEET.filter(function(eq){return !hasDailyToday(eq.id);}).map(function(eq){return eq.id;}).join(", ");
-  var fleet=FLEET.map(function(eq){var s5=gs(eq.hrs,eq.s500,500),s1=gs(eq.hrs,eq.s1k,1000),s2=gs(eq.hrs,eq.s2k,2000);return eq.id+" "+eq.make+" "+eq.model+": "+eq.hrs+"hrs | 500HR="+s5+" | 1kHR="+s1+" | 2kHR="+s2+" | "+eq.job+" | op:"+eq.op;}).join("\n");
-  return fleet+"\n\nMissing daily report today: "+(miss||"None");
-}
-async function sAI(){
-  var inp=el("ain"),btn=el("asb");var q=inp.value.trim();if(!q)return;
-  inp.value="";inp.disabled=true;btn.disabled=true;
-  APP.ai.push({r:"u",c:q});render();
-  var aim=el("aim");
-  if(aim){var dot=mk("div",{cls:"amsg b",id:"ath"});dot.innerHTML="<div class='abub'><div class='dots'><span></span><span></span><span></span></div></div>";aim.appendChild(dot);aim.scrollTop=aim.scrollHeight;}
-  var rqs=LOG.filter(function(l){return l.isReq;}).map(function(r){return r.id+": "+r.work+" (by "+r.reqBy+")";}).join("\n");
-  var msgs=APP.ai.slice(0,-1).map(function(m2){return{role:m2.r==="u"?"user":"assistant",content:m2.c};});msgs.push({role:"user",content:q});
-  try{
-    var res=await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:1000,system:"You are a field maintenance assistant for BAI Excavating LLC. Concise, direct, under 180 words.\n\nFleet & compliance:\n"+aiCtx()+"\n\nPending service requests:\n"+(rqs||"None")+"\n\nRecent log:\n"+LOG.filter(function(l){return!l.isReq;}).slice(0,5).map(function(l){return l.date+": "+l.id+" - "+l.type+" - "+l.work;}).join("\n"),messages:msgs})});
-    var data=await res.json();
-    var reply=data.content?data.content.filter(function(b){return b.type==="text";}).map(function(b){return b.text;}).join(""):"No response.";
-    APP.ai.push({r:"b",c:reply});
-  }catch(e){APP.ai.push({r:"b",c:"Connection error."});}
-  inp.disabled=false;btn.disabled=false;render();
-  var aim2=el("aim");if(aim2)aim2.scrollTop=aim2.scrollHeight;
 }
 
 /* ─── ICONS ─── */
