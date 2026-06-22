@@ -489,6 +489,24 @@ function ST(tab){
   el("tab-"+tab).classList.add("active");
   render();
 }
+
+/* ─── DEEP LINKS (QR codes) ───
+   A QR encodes <app-url>#daily/EQ-001. Scanning opens the app straight
+   to that unit's daily report form. One file, no separate pages. */
+function dailyLink(id){return location.origin+location.pathname+"#daily/"+encodeURIComponent(id);}
+function findEqIdx(id){for(var k=0;k<FLEET.length;k++){if(FLEET[k].id===id)return k;}return -1;}
+function openDailyById(id){
+  APP.dlOpen=id;ST("daily");
+  var idx=findEqIdx(id);
+  if(idx>=0)openDailyForm(idx);
+  else toast("Unit "+id+" not in fleet");
+}
+function applyDeepLink(){
+  var m=(location.hash||"").match(/^#daily\/(.+)$/);
+  if(m){openDailyById(decodeURIComponent(m[1]));return true;}
+  return false;
+}
+window.addEventListener("hashchange",applyDeepLink);
 function render(){
   var m=el("main");m.innerHTML="";
   updateBadge();
@@ -1097,17 +1115,26 @@ function subAdd(){
   var newUnit={id:val("ai0").trim()||nid(),sn:val("ai1").trim(),make:mk2,model:mo,type:val("ai4"),size:val("ai5").trim(),year:val("ai6").trim(),hrs:ival("ai7"),s500:ival("ai8"),s1k:ival("ai9"),s2k:ival("aia"),s5k:ival("aib"),job:val("aic").trim(),loc:val("aid").trim(),op:val("aie").trim()||"--",fuel:"1/2",insp:"Pending",adh:ival("aif")||8};
   FLEET.push(newUnit);dbUpsertUnit(newUnit);
   cmod();toast("Unit added to fleet");render();
+  openQR(FLEET.length-1);   /* auto-generate the unit's daily-report QR */
 }
 
 /* ─── QR CODE ─── */
 function openQR(i){
   var eq=FLEET[i];
-  var qd="BAI Excavating LLC\nUnit: "+eq.id+"\nS/N: "+(eq.sn||"N/A")+"\n"+eq.make+" "+eq.model+"\nHours: "+eq.hrs+"\nLocation: "+eq.loc+"\nOperator: "+eq.op;
+  var qd=dailyLink(eq.id);
   var ov=mk("div",{cls:"overlay"});ov.addEventListener("click",cmod);
   var mo=mk("div",{cls:"modal"});mo.style.maxWidth="320px";mo.style.textAlign="center";mo.addEventListener("click",function(e){e.stopPropagation();});
   var ttl=mk("div",{cls:"mttl"});ttl.style.justifyContent="center";ttl.textContent="QR Code - "+eq.id;mo.appendChild(ttl);
   mo.appendChild(mk("div",null,eq.make+" "+eq.model));
+  var note=mk("div",null,"Scan to open this unit's daily report");
+  note.style.cssText="font-size:11px;color:var(--wh3);margin-top:4px";mo.appendChild(note);
   mo.appendChild(mk("canvas",{id:"qrc",cls:"qrcanv"}));
+  var lk=mk("div",null,qd);
+  lk.style.cssText="font-family:JetBrains Mono,monospace;font-size:9px;color:var(--wh3);word-break:break-all;margin-bottom:4px";mo.appendChild(lk);
+  if(location.protocol==="file:"){
+    var warn=mk("div",null,"⚠ Generated from a local file. Open the app from its hosted (https) URL so the QR works on phones.");
+    warn.style.cssText="font-size:10px;color:var(--or);line-height:1.4;margin-bottom:6px";mo.appendChild(warn);
+  }
   var act=mk("div",{cls:"mact"});act.style.marginTop="12px";
   var bc=mk("button",{cls:"btn-no"},"Close");bc.addEventListener("click",cmod);
   var bd=mk("button",{cls:"btn-yes"},"Download PNG");bd.addEventListener("click",function(){dlQR(eq.id);});
@@ -1351,8 +1378,8 @@ function dbInsertDaily(eqId,e){ if(sb) sb.from("daily_reports").insert({eq_id:eq
 
 function dbInit(){
   render();                       /* instant paint with whatever's in memory */
-  if(!sb){ console.warn("[supabase] not configured — running in-memory only"); return; }
-  dbLoad().then(function(ok){ if(ok) render(); });
+  if(!sb){ console.warn("[supabase] not configured — running in-memory only"); applyDeepLink(); return; }
+  dbLoad().then(function(ok){ if(ok) render(); applyDeepLink(); });
 }
 
 uclk();setInterval(uclk,30000);
