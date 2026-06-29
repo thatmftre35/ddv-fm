@@ -32,18 +32,30 @@ create table if not exists public.daily_reports (
 );
 create index if not exists daily_eq_ts_idx on public.daily_reports (eq_id, ts desc);
 
+-- Equipment requests (owned + rental). status lives in payload.
+create table if not exists public.requests (
+  id      text   primary key,
+  ts      bigint not null,
+  payload jsonb  not null
+);
+create index if not exists requests_ts_idx on public.requests (ts desc);
+
 -- ── Row-Level Security: open access for the anon (publishable) key ──
 alter table public.fleet         enable row level security;
 alter table public.logs          enable row level security;
 alter table public.daily_reports enable row level security;
+alter table public.requests      enable row level security;
 
 drop policy if exists open_fleet on public.fleet;
 drop policy if exists open_logs  on public.logs;
 drop policy if exists open_daily on public.daily_reports;
+drop policy if exists open_requests on public.requests;
 
 create policy open_fleet on public.fleet
   for all to anon, authenticated using (true) with check (true);
 create policy open_logs on public.logs
   for all to anon, authenticated using (true) with check (true);
 create policy open_daily on public.daily_reports
+  for all to anon, authenticated using (true) with check (true);
+create policy open_requests on public.requests
   for all to anon, authenticated using (true) with check (true);

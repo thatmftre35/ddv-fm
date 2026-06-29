@@ -276,6 +276,61 @@ body,input,select,textarea,button{font-family:'Inter',system-ui,sans-serif;lette
 *::-webkit-scrollbar-track{background:transparent}
 
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ── Equipment Requests + Approvals ── */
+.rqseg{display:flex;gap:6px;margin-bottom:14px;background:var(--bk2);border:1px solid var(--bd);border-radius:11px;padding:4px}
+.rqseg button{flex:1;background:none;border:none;border-radius:8px;padding:10px;font-family:'Inter',sans-serif;font-weight:700;font-size:12px;letter-spacing:.4px;color:var(--wh3);cursor:pointer;transition:all .16s var(--ease)}
+.rqseg button.on{background:var(--gred);color:#fff;box-shadow:0 3px 12px rgba(212,43,43,.3)}
+.rqform{background:var(--glass);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);border:var(--glass-bd);box-shadow:var(--glass-sh);border-radius:var(--rl);padding:16px;margin-bottom:18px}
+.rqgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px}
+.rqgrid .full{grid-column:1/-1}
+.btn-rq{width:100%;background:var(--gred);color:#fff;border:none;border-radius:8px;padding:11px;font-family:'Inter',sans-serif;font-size:12px;font-weight:700;letter-spacing:.4px;cursor:pointer;box-shadow:0 3px 12px rgba(212,43,43,.32),inset 0 1px 0 rgba(255,255,255,.18)}
+.btn-rq:hover{filter:brightness(1.09)}.btn-rq:active{transform:translateY(1px)}
+.rqitem{background:var(--glass);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);border:var(--glass-bd);box-shadow:var(--glass-sh);border-radius:var(--r);padding:13px 15px;margin-bottom:10px}
+.rqit-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.rqit-ti{font-family:'Space Grotesk','Inter',sans-serif;font-weight:700;font-size:14px;color:var(--wh);letter-spacing:-.3px}
+.rqit-su{font-size:11px;color:var(--wh3);margin-top:2px}
+.rqit-meta{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin-top:11px}
+.rqit-meta>div{font-size:13px;color:var(--wh)}
+.rqit-meta b{color:var(--wh3);font-weight:600;font-size:9px;text-transform:uppercase;letter-spacing:.6px;display:block;margin-bottom:1px}
+.rqtag{font-family:'Inter',sans-serif;font-weight:700;font-size:9px;letter-spacing:.6px;padding:3px 9px;border-radius:20px;white-space:nowrap}
+.rqtag.owned{background:rgba(46,194,120,.14);color:var(--gr);border:1px solid rgba(46,194,120,.3)}
+.rqtag.rental{background:rgba(245,146,47,.14);color:var(--or);border:1px solid rgba(245,146,47,.32)}
+.rqtag.pending{background:rgba(245,146,47,.14);color:var(--or);border:1px solid rgba(245,146,47,.3)}
+.rqtag.approved{background:rgba(46,194,120,.14);color:var(--gr);border:1px solid rgba(46,194,120,.3)}
+.rqtags{display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end}
+.rqacts{display:flex;gap:8px;margin-top:13px}
+.btn-app{flex:1;background:var(--gr);color:#06140d;border:none;border-radius:7px;padding:9px;font-family:'Inter',sans-serif;font-weight:700;font-size:12px;cursor:pointer}
+.btn-app:hover{filter:brightness(1.08)}.btn-app:active{transform:translateY(1px)}
+.btn-den{flex:1;background:none;color:var(--red);border:1px solid rgba(212,43,43,.4);border-radius:7px;padding:9px;font-family:'Inter',sans-serif;font-weight:700;font-size:12px;cursor:pointer}
+.btn-den:active{transform:translateY(1px)}
+.adlock{max-width:340px;margin:40px auto;text-align:center;background:var(--glass);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);border:var(--glass-bd);box-shadow:var(--glass-sh);border-radius:var(--rl);padding:32px 24px}
+.adlock-ic{width:50px;height:50px;border-radius:14px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;background:rgba(212,43,43,.12);border:1px solid rgba(212,43,43,.3)}
+.adlock-ic svg{width:25px;height:25px;color:var(--red)}
+.adlock .mttl{justify-content:center}
+.adlock-sub{font-size:12px;color:var(--wh3);line-height:1.5;max-width:240px;margin:0 auto}
+.adlock input{width:100%;background:var(--bk3);border:1px solid var(--bd);border-radius:8px;padding:11px 12px;font-size:15px;color:var(--wh);text-align:center;letter-spacing:4px;margin:16px 0;outline:none;font-family:'Space Grotesk',sans-serif}
+.adlock input:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(212,43,43,.18)}
+.rqnone{background:var(--bk2);border:1px solid var(--bd);border-radius:var(--r);padding:20px;text-align:center;color:var(--wh3);font-size:13px;margin-bottom:14px}
+/* month calendar */
+.mcal{background:var(--glass);-webkit-backdrop-filter:blur(16px) saturate(150%);backdrop-filter:blur(16px) saturate(150%);border:var(--glass-bd);box-shadow:var(--glass-sh);border-radius:var(--rl);padding:14px}
+.mcal-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.mcal-mth{font-family:'Space Grotesk','Inter',sans-serif;font-weight:700;font-size:15px;color:var(--wh);letter-spacing:-.4px}
+.mcal-nav{display:flex;gap:6px}
+.mcal-nav button{width:30px;height:30px;background:var(--bk3);border:1px solid var(--bd);border-radius:8px;color:var(--wh);cursor:pointer;font-size:15px;line-height:1}
+.mcal-nav button:hover{border-color:var(--red)}
+.mcal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.mcal-dow{text-align:center;font-size:9px;font-weight:700;letter-spacing:.5px;color:var(--wh3);text-transform:uppercase;padding:4px 0}
+.mcal-cell{min-height:66px;background:var(--bk2);border:1px solid var(--bd);border-radius:8px;padding:4px;overflow:hidden}
+.mcal-cell.out{opacity:.32}
+.mcal-cell.today{border-color:var(--red);box-shadow:inset 0 0 0 1px rgba(212,43,43,.4)}
+.mcal-dn{font-size:10px;color:var(--wh3);font-weight:700;margin-bottom:3px;padding-left:1px}
+.mcal-ev{font-size:9px;line-height:1.3;font-weight:700;color:#06140d;background:var(--gr);border-radius:3px;padding:2px 4px;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mcal-ev.rental{background:var(--or);color:#1a0f02}
+.mcal-lgnd{display:flex;gap:14px;margin-top:11px;font-size:10px;color:var(--wh3)}
+.mcal-lgnd span{display:inline-flex;align-items:center;gap:5px}
+.mcal-lgnd i{width:10px;height:10px;border-radius:3px;display:inline-block}
+@media(max-width:600px){.rqgrid{grid-template-columns:1fr}.rqit-meta{grid-template-columns:1fr}.mcal-cell{min-height:50px}.mcal-grid{gap:3px}}
 </style>
 </head>
 <body>
@@ -290,6 +345,8 @@ body,input,select,textarea,button{font-family:'Inter',system-ui,sans-serif;lette
   <button class="nb" onclick="ST('log')" id="tab-log"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2M9 5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2M9 5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2"/></svg>Log</button>
   <button class="nb" onclick="ST('cal')" id="tab-cal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Cal</button>
   <button class="nb" onclick="ST('rpt')" id="tab-rpt"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Reports</button>
+  <button class="nb" onclick="ST('req')" id="tab-req"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Requests</button>
+  <button class="nb" onclick="ST('adm')" id="tab-adm"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>Approve</button>
 </div>
 <div id="main"></div>
 <div id="mod"></div>
@@ -306,6 +363,7 @@ var LOGO_WEB="iVBORw0KGgoAAAANSUhEUgAAAUAAAAD0CAYAAADqvP99AACeYUlEQVR42uxdd5gV1f
 ═══════════════════════════════════════ */
 var FLEET=[];
 var LOG=[];
+var REQUESTS=[];   /* equipment requests: owned + rental */
 
 /* Daily operator logs: DAILY[eqId] = array of entries */
 var DAILY = {};
@@ -434,7 +492,7 @@ function getChk(type) {
 }
 
 var EQT=["Excavator","Mini Excavator","Backhoe","Dozer","Loader","Track Loader","Skid Steer","Grader","Compactor","Crane","Other"];
-var APP={tab:"dash",open:null,calOff:0,calFlt:"all",ph:[],svcI:null,dlFlt:"all",dlOpen:null};
+var APP={tab:"dash",open:null,calOff:0,calFlt:"all",ph:[],svcI:null,dlFlt:"all",dlOpen:null,reqType:"owned",reqCalOff:0,adminOK:false};
 
 /* ─── UTILITIES ─── */
 function gs(h,l,i){if(!l)return"ok";var n=l+i;if(h>=n)return"ov";if(n-h<=50)return"sn";return"ok";}
@@ -501,8 +559,11 @@ function openDailyById(id){
   else toast("Unit "+id+" not in fleet");
 }
 function applyDeepLink(){
-  var m=(location.hash||"").match(/^#daily\/(.+)$/);
+  var h=location.hash||"";
+  var m=h.match(/^#daily\/(.+)$/);
   if(m){openDailyById(decodeURIComponent(m[1]));return true;}
+  if(/^#approve/i.test(h)){ST("adm");return true;}
+  if(/^#requests?$/i.test(h)){ST("req");return true;}
   return false;
 }
 window.addEventListener("hashchange",applyDeepLink);
@@ -515,6 +576,8 @@ function render(){
   else if(APP.tab==="log")rLog(m);
   else if(APP.tab==="cal")rCal(m);
   else if(APP.tab==="rpt")rRpt(m);
+  else if(APP.tab==="req")rReq(m);
+  else if(APP.tab==="adm")rAdm(m);
 }
 function updateBadge() {
   var miss = countMissingToday();
@@ -1298,6 +1361,217 @@ function icoSVG(){return'<svg viewBox="0 0 24 24" fill="none" stroke="currentCol
 function chevSVG(){return'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>';}
 
 /* ════════════════════════════════════════════════════════
+   EQUIPMENT REQUESTS  (owned + rental)  +  ADMIN APPROVALS
+   ════════════════════════════════════════════════════════ */
+function nrid(){var n=REQUESTS.map(function(r){return parseInt((r.id||"").replace("REQ-",""))||0;});return"REQ-"+String(Math.max.apply(null,n.concat(0))+1).padStart(3,"0");}
+function fmtReqDate(s){if(!s)return"--";var p=String(s).split("-");if(p.length!==3)return s;return p[1]+"/"+p[2]+"/"+p[0];}
+function parseDateInput(s){if(!s)return null;var p=String(s).split("-");if(p.length!==3)return null;return new Date(parseInt(p[0],10),parseInt(p[1],10)-1,parseInt(p[2],10));}
+function sameDay(a,b){return a.getFullYear()===b.getFullYear()&&a.getMonth()===b.getMonth()&&a.getDate()===b.getDate();}
+function reqCoversDay(r,cd){
+  var start=parseDateInput(r.neededBy);if(!start)return false;
+  var end=parseDateInput(r.endDate)||start;
+  var c=new Date(cd.getFullYear(),cd.getMonth(),cd.getDate()).getTime();
+  var s=new Date(start.getFullYear(),start.getMonth(),start.getDate()).getTime();
+  var e=new Date(end.getFullYear(),end.getMonth(),end.getDate()).getTime();
+  return c>=s&&c<=e;
+}
+
+/* ─── REQUESTS TAB ─── */
+function rReq(m){
+  var seg=mk("div",{cls:"rqseg"});
+  [["owned","Owned Equipment"],["rental","Rental"]].forEach(function(t){
+    var b=mk("button",{cls:APP.reqType===t[0]?"on":""},t[1]);
+    b.addEventListener("click",function(){APP.reqType=t[0];render();});
+    seg.appendChild(b);
+  });
+  m.appendChild(seg);
+  m.appendChild(APP.reqType==="owned"?buildOwnedForm():buildRentalForm());
+  m.appendChild(mk("div",{cls:"hdg"},"Approved Schedule"));
+  m.appendChild(buildReqCalendar());
+}
+
+function buildOwnedForm(){
+  var f=mk("div",{cls:"rqform"});
+  f.appendChild(mk("div",{cls:"mttl",html:"<span>▸</span> Request Owned Equipment"}));
+  if(FLEET.length===0){
+    var w=mk("div",{cls:"rqnone"},"No owned equipment in the fleet yet. Add units on the Equip tab first.");
+    f.appendChild(w);return f;
+  }
+  var g=mk("div",{cls:"rqgrid"});
+  var ffEq=mk("div",{cls:"ff full"});ffEq.appendChild(mk("label",null,"Equipment *"));
+  var inp=mk("input",{id:"ro-eq",list:"ro-eqlist",placeholder:"Search or select a unit…",autocomplete:"off"});
+  var dl=mk("datalist",{id:"ro-eqlist"});
+  FLEET.forEach(function(eq){var o=mk("option");o.value=eq.id+" — "+eq.make+" "+eq.model;dl.appendChild(o);});
+  ap(ffEq,inp,dl);g.appendChild(ffEq);
+  [["ro-req","Requester *","text","Your name"],
+   ["ro-job","Job / Site *","text","e.g. Riverside Site A"],
+   ["ro-need","Date Needed By *","date",""],
+   ["ro-end","Expected End Date","date",""]].forEach(function(fd){
+    var d=mk("div",{cls:"ff"});d.appendChild(mk("label",null,fd[1]));
+    var i=mk("input",{type:fd[2],id:fd[0]});if(fd[3])i.placeholder=fd[3];d.appendChild(i);g.appendChild(d);
+  });
+  f.appendChild(g);
+  var b=mk("button",{cls:"btn-rq"},"Submit Request");b.addEventListener("click",submitOwnedReq);
+  f.appendChild(b);return f;
+}
+function submitOwnedReq(){
+  var eqv=val("ro-eq").trim(),requester=val("ro-req").trim(),job=val("ro-job").trim(),need=val("ro-need"),end=val("ro-end");
+  if(!eqv){toast("Select a piece of equipment.");return;}
+  if(!requester){toast("Requester name required.");return;}
+  if(!job){toast("Job / Site required.");return;}
+  if(!need){toast("Date needed by required.");return;}
+  var eqId=eqv.split("—")[0].trim();
+  var eq=FLEET.find(function(e){return e.id===eqId;});
+  var eqName=eq?(eq.make+" "+eq.model):eqv;
+  var r={id:nrid(),type:"owned",status:"pending",eqId:eqId,eqName:eqName,requester:requester,job:job,neededBy:need,endDate:end,created:todayStr(),ts:Date.now()};
+  REQUESTS.push(r);dbUpsertReq(r);notifyRequest(r);
+  toast("Request submitted — "+(eqId||eqName));render();
+}
+
+function buildRentalForm(){
+  var f=mk("div",{cls:"rqform"});
+  f.appendChild(mk("div",{cls:"mttl",html:"<span>▸</span> Request Rental Equipment"}));
+  var g=mk("div",{cls:"rqgrid"});
+  [["rr-type","Equipment Type *","text","e.g. Telehandler","full"],
+   ["rr-mm","Make / Model","text","e.g. JLG 1055 (optional)","full"],
+   ["rr-req","Requester *","text","Your name",""],
+   ["rr-job","Job / Site *","text","e.g. Hwy 9 Grading",""],
+   ["rr-need","Date Needed By *","date","",""],
+   ["rr-end","Expected End Date","date","",""]].forEach(function(fd){
+    var d=mk("div",{cls:"ff"+(fd[4]==="full"?" full":"")});d.appendChild(mk("label",null,fd[1]));
+    var i=mk("input",{type:fd[2],id:fd[0]});if(fd[3])i.placeholder=fd[3];d.appendChild(i);g.appendChild(d);
+  });
+  f.appendChild(g);
+  var b=mk("button",{cls:"btn-rq"},"Submit Request");b.addEventListener("click",submitRentalReq);
+  f.appendChild(b);return f;
+}
+function submitRentalReq(){
+  var etype=val("rr-type").trim(),mm=val("rr-mm").trim(),requester=val("rr-req").trim(),job=val("rr-job").trim(),need=val("rr-need"),end=val("rr-end");
+  if(!etype){toast("Equipment type required.");return;}
+  if(!requester){toast("Requester name required.");return;}
+  if(!job){toast("Job / Site required.");return;}
+  if(!need){toast("Date needed by required.");return;}
+  var r={id:nrid(),type:"rental",status:"pending",equipType:etype,makeModel:mm,requester:requester,job:job,neededBy:need,endDate:end,created:todayStr(),ts:Date.now()};
+  REQUESTS.push(r);dbUpsertReq(r);notifyRequest(r);
+  toast("Rental request submitted");render();
+}
+
+function buildReqCalendar(){
+  var wrap=mk("div",{cls:"mcal"});
+  var now=new Date(),vd=new Date(now.getFullYear(),now.getMonth()+APP.reqCalOff,1);
+  var hd=mk("div",{cls:"mcal-hd"});
+  var nav=mk("div",{cls:"mcal-nav"});
+  var bp=mk("button",null,"‹");bp.addEventListener("click",function(){APP.reqCalOff--;render();});
+  var bn=mk("button",null,"›");bn.addEventListener("click",function(){APP.reqCalOff++;render();});
+  ap(nav,bp,bn);
+  ap(hd,mk("div",{cls:"mcal-mth"},vd.toLocaleString("default",{month:"long",year:"numeric"})),nav);
+  wrap.appendChild(hd);
+  var grid=mk("div",{cls:"mcal-grid"});
+  ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].forEach(function(d){grid.appendChild(mk("div",{cls:"mcal-dow"},d));});
+  var startDow=new Date(vd.getFullYear(),vd.getMonth(),1).getDay();
+  var cellStart=new Date(vd.getFullYear(),vd.getMonth(),1-startDow);
+  var approved=REQUESTS.filter(function(r){return r.status==="approved";});
+  for(var c=0;c<42;c++){
+    var cd=new Date(cellStart.getFullYear(),cellStart.getMonth(),cellStart.getDate()+c);
+    var inMonth=cd.getMonth()===vd.getMonth();
+    var cell=mk("div",{cls:"mcal-cell"+(inMonth?"":" out")+(sameDay(cd,now)?" today":"")});
+    cell.appendChild(mk("div",{cls:"mcal-dn"},String(cd.getDate())));
+    approved.forEach(function(r){
+      if(!reqCoversDay(r,cd))return;
+      var label=r.type==="owned"?(r.eqId||r.eqName):(r.makeModel||r.equipType);
+      var ev=mk("div",{cls:"mcal-ev "+(r.type==="rental"?"rental":"owned")},label);
+      ev.setAttribute("title",(r.eqName||r.equipType)+" — "+r.requester+" ("+r.job+")");
+      cell.appendChild(ev);
+    });
+    grid.appendChild(cell);
+  }
+  wrap.appendChild(grid);
+  var lg=mk("div",{cls:"mcal-lgnd"});
+  lg.appendChild(mk("span",{html:"<i style='background:var(--gr)'></i>Owned"}));
+  lg.appendChild(mk("span",{html:"<i style='background:var(--or)'></i>Rental"}));
+  wrap.appendChild(lg);
+  return wrap;
+}
+
+/* ─── ADMIN APPROVALS TAB (password-gated) ─── */
+function rAdm(m){
+  if(!APP.adminOK){
+    var lock=mk("div",{cls:"adlock"});
+    lock.appendChild(mk("div",{cls:"adlock-ic",html:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>'}));
+    lock.appendChild(mk("div",{cls:"mttl"},"Admin Access"));
+    lock.appendChild(mk("div",{cls:"adlock-sub"},"Enter the admin password to review and approve equipment requests."));
+    var inp=mk("input",{type:"password",id:"adm-pw",placeholder:"••••",autocomplete:"off"});
+    inp.addEventListener("keydown",function(e){if(e.key==="Enter")tryAdmin();});
+    lock.appendChild(inp);
+    var b=mk("button",{cls:"btn-rq"},"Unlock");b.addEventListener("click",tryAdmin);
+    lock.appendChild(b);
+    m.appendChild(lock);
+    setTimeout(function(){var p=el("adm-pw");if(p)p.focus();},50);
+    return;
+  }
+  var pend=REQUESTS.filter(function(r){return r.status==="pending";});
+  var appr=REQUESTS.filter(function(r){return r.status==="approved";});
+  var top=mk("div",{cls:"hdg"});
+  top.appendChild(mk("span",null,"Pending Requests ("+pend.length+")"));
+  var lk=mk("button",{cls:"cfbtn"},"🔒 Lock");lk.addEventListener("click",function(){APP.adminOK=false;render();});
+  top.appendChild(lk);
+  m.appendChild(top);
+  if(pend.length===0)m.appendChild(mk("div",{cls:"rqnone"},"No pending requests."));
+  else pend.sort(function(a,b){return (a.ts||0)-(b.ts||0);}).forEach(function(r){m.appendChild(buildReqItem(r,true));});
+  m.appendChild(mk("div",{cls:"hdg"},"Approved ("+appr.length+")"));
+  if(appr.length===0)m.appendChild(mk("div",{cls:"rqnone"},"No approved requests yet."));
+  else appr.sort(function(a,b){return (parseDateInput(a.neededBy)||0)-(parseDateInput(b.neededBy)||0);}).forEach(function(r){m.appendChild(buildReqItem(r,false));});
+}
+function tryAdmin(){
+  if(val("adm-pw")==="bax"){APP.adminOK=true;toast("Access granted");render();}
+  else toast("Incorrect password.");
+}
+function buildReqItem(r,actions){
+  var it=mk("div",{cls:"rqitem"});
+  var top=mk("div",{cls:"rqit-top"});
+  var left=mk("div");
+  var title=r.type==="owned"?((r.eqId?r.eqId+" · ":"")+(r.eqName||"")):(r.equipType+(r.makeModel?" · "+r.makeModel:""));
+  left.appendChild(mk("div",{cls:"rqit-ti"},title));
+  left.appendChild(mk("div",{cls:"rqit-su"},r.id+" • requested "+(r.created||"")));
+  top.appendChild(left);
+  var tags=mk("div",{cls:"rqtags"});
+  tags.appendChild(mk("span",{cls:"rqtag "+r.type},r.type==="owned"?"OWNED":"RENTAL"));
+  tags.appendChild(mk("span",{cls:"rqtag "+r.status},String(r.status||"").toUpperCase()));
+  top.appendChild(tags);
+  it.appendChild(top);
+  var meta=mk("div",{cls:"rqit-meta"});
+  [["Requester",r.requester],["Job / Site",r.job],["Needed By",fmtReqDate(r.neededBy)],["Expected End",fmtReqDate(r.endDate)]].forEach(function(p){
+    var c=mk("div");c.appendChild(mk("b",null,p[0]));c.appendChild(document.createTextNode(p[1]||"--"));meta.appendChild(c);
+  });
+  it.appendChild(meta);
+  if(actions){
+    var acts=mk("div",{cls:"rqacts"});
+    var ya=mk("button",{cls:"btn-app"},"✓ Approve");ya.addEventListener("click",function(){reqApprove(r.id);});
+    var na=mk("button",{cls:"btn-den"},"✕ Deny");na.addEventListener("click",function(){reqDeny(r.id);});
+    ap(acts,ya,na);it.appendChild(acts);
+  }
+  return it;
+}
+function reqApprove(id){
+  var r=REQUESTS.find(function(x){return x.id===id;});if(!r)return;
+  r.status="approved";dbUpsertReq(r);toast(id+" approved — added to schedule");render();
+}
+function reqDeny(id){
+  var i=REQUESTS.findIndex(function(x){return x.id===id;});if(i<0)return;
+  REQUESTS.splice(i,1);dbDeleteReq(id);toast(id+" denied");render();
+}
+
+/* Notify the fleet manager of a new request (fire-and-forget). */
+function notifyRequest(r){
+  try{
+    fetch("/api/request-notify",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(r)})
+      .then(function(res){return res.json().catch(function(){return{};});})
+      .then(function(j){if(!j||!j.ok)console.warn("[request-notify]",j);})
+      .catch(function(e){console.warn("[request-notify]",e);});
+  }catch(e){console.warn("[request-notify]",e);}
+}
+
+/* ════════════════════════════════════════════════════════
    SUPABASE PERSISTENCE
    Only the PUBLISHABLE key lives here — it is safe to expose
    (protected by Row-Level Security; see supabase_schema.sql).
@@ -1319,11 +1593,14 @@ async function dbLoad(){
     var f = await sb.from("fleet").select("payload").order("id",{ascending:true});
     var l = await sb.from("logs").select("payload").order("ts",{ascending:false});
     var d = await sb.from("daily_reports").select("eq_id,payload").order("ts",{ascending:false});
+    var rq = await sb.from("requests").select("payload").order("ts",{ascending:false});
     if(f.error||l.error||d.error){ dbErr(f); dbErr(l); dbErr(d); return false; }
     FLEET = f.data.map(function(r){ return r.payload; });
     LOG   = l.data.map(function(r){ return r.payload; });
     DAILY = {};
     d.data.forEach(function(r){ (DAILY[r.eq_id] = DAILY[r.eq_id] || []).push(r.payload); });
+    if(rq.error){ dbErr(rq); }                          /* requests table optional — don't fail the load */
+    else REQUESTS = rq.data.map(function(r){ return r.payload; });
     return true;
   }catch(e){ console.error("[supabase] dbLoad failed", e); return false; }
 }
@@ -1333,6 +1610,8 @@ function dbUpsertUnit(u){ if(sb) sb.from("fleet").upsert({id:u.id, payload:u, up
 function dbDeleteUnit(id){ if(sb) sb.from("fleet").delete().eq("id", id).then(dbErr); }
 function dbInsertLog(e){ if(sb) sb.from("logs").insert({ts:Date.now(), payload:e}).then(dbErr); }
 function dbInsertDaily(eqId,e){ if(sb) sb.from("daily_reports").insert({eq_id:eqId, ts:Date.now(), payload:e}).then(dbErr); }
+function dbUpsertReq(r){ if(sb) sb.from("requests").upsert({id:r.id, ts:r.ts||Date.now(), payload:r}).then(dbErr); }
+function dbDeleteReq(id){ if(sb) sb.from("requests").delete().eq("id", id).then(dbErr); }
 
 function dbInit(){
   render();                       /* instant paint with whatever's in memory */
