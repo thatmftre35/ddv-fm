@@ -792,4 +792,43 @@ Currently `s500`, `s1k` etc. store the hour meter reading when service was done.
 
 ---
 
+## Daily Email Report (`/api/daily-report.js` + `vercel.json`)
+
+An automated end-of-day digest emailed to the fleet manager at **5:00 PM ET every day**.
+It pulls live data from Supabase and summarizes:
+
+- **No Report Submitted** — units missing a daily operator report today
+- **Failed Inspections** — failed checks + operator notes
+- **Flagged Notes** — units that passed but had notes worth flagging
+- **Maintenance Due** — units overdue / within 50h of a 500/1k/2k/5k service
+- **Reported & Clean** — the all-good roster, plus KPI header (compliance %, etc.)
+
+### Scheduling & DST
+
+Vercel Cron runs in **UTC only** with no daylight-saving awareness. To hit 5pm
+Eastern year-round, `vercel.json` registers **two** cron times (21:00 and 22:00 UTC)
+and the function guards on the actual Eastern hour — only the invocation where it's
+17:00 ET actually sends; the other exits early. Do not "simplify" this to a single
+cron entry or it will drift by an hour twice a year.
+
+### Environment variables (set in Vercel → Settings → Environment Variables)
+
+| Var | Required | Default | Notes |
+|-----|----------|---------|-------|
+| `RESEND_API_KEY` | ✅ | — | Resend API key. **Never commit this.** |
+| `REPORT_TO`   | — | `fleetmanager@battag.com` | Recipient. |
+| `REPORT_FROM` | — | `BAI Fleet Manager <onboarding@resend.dev>` | Sender. The shared `onboarding@resend.dev` only delivers when the Resend account owner == `REPORT_TO`; to send to arbitrary recipients, verify a domain in Resend and use an address on it. |
+| `SUPA_URL` / `SUPA_KEY` | — | publishable values baked in | Override only if the project moves. |
+| `CRON_SECRET` | — | — | If set, scheduled (non-test) requests must carry `Authorization: Bearer <CRON_SECRET>`. |
+
+### Manual triggers
+
+- `https://ddv-fm.vercel.app/api/daily-report?test=1` — send **sample** data (preview the format)
+- `https://ddv-fm.vercel.app/api/daily-report?force=1` — send **live** data off-schedule
+- No params → cron mode (only sends during the 5pm-ET hour)
+
+Zero npm dependencies — uses native `fetch` for both Supabase REST and the Resend API.
+
+---
+
 *Document generated June 17, 2026. Reflects BAI_FieldApp_v5.zip.*
